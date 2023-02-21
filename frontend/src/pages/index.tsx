@@ -1,6 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { Inter } from "@next/font/google";
+import { Button } from "../components/Button/Button";
 import styles from "@/styles/Home.module.css";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -16,6 +17,13 @@ export default function Home() {
       </Head>
       <main className={styles.main}>
         <h1 className="text-4xl font-bold  text-red-700">ヘッダー</h1>
+        <Button
+          outlined={false}
+          size={"small"}
+          onClick={() => (document.location.href = "https://reactjs.org")}
+        >
+          Submit
+        </Button>
 
         <div className={styles.description}>
           <p>
