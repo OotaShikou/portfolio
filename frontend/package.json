@@ -26,7 +26,7 @@
     "cssnano": "^5.1.15",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-tailwindcss": "^3.9.0",
-    "husky": "^8.0.3",
+    "husky": "4",
     "postcss": "^8.4.21",
     "prettier": "^2.8.4",
     "tailwindcss": "^3.2.7"
