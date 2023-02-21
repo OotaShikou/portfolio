@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo 'docker-compose run --rm frontend yarn format を実行します。'
+docker-compose exec -T frontend yarn format
+
+
+echo 'docker-compose run --rm frontend yarn lint を実行します。'
+docker-compose exec -T frontend yarn lint
