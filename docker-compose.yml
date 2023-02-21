@@ -12,13 +12,13 @@ services:
     ports:
       - "3000:3000"
 
-  # storybook:
-  #   container_name: storybook
-  #   build:
-  #     context: .
-  #     dockerfile: container/frontend/Dockerfile
-  #   command: "yarn storybook:docker"
-  #   ports:
-  #     - "6006:6006"
-  #   volumes:
-  #     - ./frontend:/usr/src/app
+  storybook:
+    container_name: storybook
+    build:
+      context: .
+      dockerfile: container/frontend/Dockerfile
+    command: "yarn storybook"
+    ports:
+      - "6006:6006"
+    volumes:
+      - ./frontend:/usr/src/app
