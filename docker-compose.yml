@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  frontend:
+    container_name: frontend
+    build:
+      context: .
+      dockerfile: container/frontend/Dockerfile
+    volumes:
+      - ./frontend:/usr/src/app
+    command: yarn dev
+    ports:
+      - "3000:3000"
+
+  # storybook:
+  #   container_name: storybook
+  #   build:
+  #     context: .
+  #     dockerfile: container/frontend/Dockerfile
+  #   command: "yarn storybook:docker"
+  #   ports:
+  #     - "6006:6006"
+  #   volumes:
+  #     - ./frontend:/usr/src/app
