@@ -10,8 +10,6 @@
   ],
   "rules": {
     // import の順番をルール化
-    "import/order": [
-      "error"
-    ]
+    "import/order": ["error"]
   }
 }
