@@ -33,7 +33,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "docker-compose run --rm frontend yarn format"
+      "pre-commit": "docker-compose run --rm frontend yarn format && docker-compose run --rm frontend yarn lint"
     }
   }
 }
