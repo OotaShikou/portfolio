@@ -1,7 +1,8 @@
+import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { Button } from "../components/Button/Button";
 
-export default function Home() {
+export default function Home(props: any) {
   return (
     <>
       <Head>
@@ -19,7 +20,16 @@ export default function Home() {
         >
           Submit
         </Button>
+        <code>{props.posts[0].properties.title.title[0].plain_text}</code>
       </main>
     </>
   );
 }
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const res = await fetch(`${process.env.API_URL}/notion_blogs`);
+  const data = await res.json();
+
+  return {
+    props: data,
+  };
+};
