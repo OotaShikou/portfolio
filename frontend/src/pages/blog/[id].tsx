@@ -1,14 +1,12 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import { Hero } from "../components/Top/Hero/Hero";
-import { Skill } from "../components/Top/Skill/Skill";
-import { Blog } from "../components/Top/Blog/Blog";
+import { useRouter } from "next/router";
 
-export default function Home(props: any) {
+export default function BlogIndex(props: any) {
   return (
     <>
       <Head>
-        <title>太田志幸の技術ブログ</title>
+        <title> | 太田志幸の技術ブログ</title>
         <meta
           name="description"
           content="Nextjs,Ruby on Rails,Laravel,Nuxtjsなどの技術ブログを書いています。また太田志幸のポートフォリオもまとめられています。"
@@ -17,21 +15,17 @@ export default function Home(props: any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="font-thin text-white">
-        {/* HeroSection Component */}
-        <Hero />
-
-        {/* SkillSection Component */}
-        <Skill />
-
-        {/* BlogSection Component */}
-        <Blog posts={props.posts} />
+      <div className="bg-gray-900 font-thin text-white">
+        <p>このページのデータタイプは{props.post.object}です</p>
       </div>
     </>
   );
 }
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const res = await fetch(`${process.env.API_URL}/notion_blogs?page_size=6`);
+  const res = await fetch(
+    `${process.env.API_URL}/notion_blog_content?postId=${context.params?.id}`
+  );
   const data = await res.json();
 
   return {

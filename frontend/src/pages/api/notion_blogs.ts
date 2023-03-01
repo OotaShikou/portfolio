@@ -15,7 +15,7 @@ type Data = {
 interface ExtendNextApiRequest extends NextApiRequest {
   query: {
     contains: string;
-    page_size: string;
+    page_size: string | undefined;
   };
 }
 
@@ -30,7 +30,7 @@ export default async function handler(
 
   const query = await notion.databases.query({
     database_id: notionDatabaseId,
-    page_size: Number(eq.query.page_size),
+    page_size: eq.query.page_size ? Number(eq.query.page_size) : undefined,
     filter: {
       and: [
         {

@@ -5,10 +5,10 @@ type Props = {};
 
 export const Skill: React.FC<Props> = ({}) => {
   return (
-    <section className="body-font bg-gray-900 text-gray-400">
+    <section className=" bg-gray-900 text-gray-400">
       <div className="container mx-auto px-5 py-24">
         <div className="mb-20 flex w-full flex-col flex-wrap items-center text-center">
-          <h1 className="title-font mb-2 text-2xl font-medium text-white sm:text-3xl">
+          <h1 className="mb-2 text-2xl font-medium text-white sm:text-3xl">
             My Skill
           </h1>
           <p className="w-full leading-relaxed text-opacity-80 lg:w-1/2">
