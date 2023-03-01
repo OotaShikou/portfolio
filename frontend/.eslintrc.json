@@ -10,6 +10,7 @@
   ],
   "rules": {
     // import の順番をルール化
-    "import/order": ["error"]
+    "import/order": ["error"],
+    "@next/next/no-img-element": "off"
   }
 }

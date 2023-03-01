@@ -12,8 +12,15 @@ type Data = {
   posts: any;
 };
 
+interface ExtendNextApiRequest extends NextApiRequest {
+  query: {
+    contains: string;
+    page_size: string;
+  };
+}
+
 export default async function handler(
-  eq: NextApiRequest,
+  eq: ExtendNextApiRequest,
   res: NextApiResponse<Data>
 ) {
   if (!notionSecret || !notionDatabaseId)
@@ -23,12 +30,19 @@ export default async function handler(
 
   const query = await notion.databases.query({
     database_id: notionDatabaseId,
+    page_size: Number(eq.query.page_size),
     filter: {
-      or: [
+      and: [
         {
           property: "publish",
           checkbox: {
             equals: true,
+          },
+        },
+        {
+          property: "title",
+          title: {
+            contains: eq.query.contains ?? "",
           },
         },
       ],
