@@ -38,6 +38,21 @@ export const Blog: React.FC<Props> = ({ posts, title_unset }) => {
             </h1>
             <p className="w-full leading-relaxed text-opacity-80 lg:w-1/2">
               日頃勉強しているものをBlogにしました。幅広く様々な技術について学習し、技術力を向上させていきたいなと考えています。興味があれば閲覧していただければ幸いです。
+              <a
+                className="inline-flex items-center text-indigo-400 md:mb-2 lg:mb-0"
+                href="./blog"
+              >
+                記事一覧を見る
+                <svg
+                  className="ml-2 mt-1 h-4 w-4"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  fill="none"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
             </p>
           </div>
         ) : null}

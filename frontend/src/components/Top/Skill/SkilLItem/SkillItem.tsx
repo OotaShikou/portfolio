@@ -11,11 +11,9 @@ export const SkillItem: React.FC<Props> = ({ name, description, imgPath }) => {
     <div className="bg-gray-900 p-4 md:w-1/2 xl:w-1/3">
       <div className="rounded-lg border border-gray-700 border-opacity-75 p-6 md:h-60">
         <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 text-indigo-400">
-          <img src={imgPath} alt="プログラミング言語のロゴ"/>
+          <img src={imgPath} alt="プログラミング言語のロゴ" />
         </div>
-        <h2 className="mb-2 text-lg font-medium text-white">
-          {name}
-        </h2>
+        <h2 className="mb-2 text-lg font-medium text-white">{name}</h2>
         <p className="text-base leading-relaxed">{description}</p>
       </div>
     </div>
