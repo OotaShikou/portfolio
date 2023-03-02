@@ -4,8 +4,10 @@ type Props = {
   text: string;
 };
 
-export const Heading_2: React.FC<Props> = ({text}) => {
+export const Heading_2: React.FC<Props> = ({ text }) => {
   return (
-    <h2 className="text-gray-300 text-xl lg:text-2xl font-normal mb-4 md:mb-6 mt-3 border-l-8 p-2 md:p-3 border-indigo-600">{text}</h2>
+    <h2 className="mb-4 mt-3 border-l-8 border-indigo-600 p-2 text-xl font-normal text-gray-300 md:mb-6 md:p-3 lg:text-2xl">
+      {text}
+    </h2>
   );
 };

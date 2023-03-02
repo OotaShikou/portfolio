@@ -1,5 +1,7 @@
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { monokaiSublime } from "react-syntax-highlighter/dist/cjs/styles/hljs";
 import { Paragraph } from "../../components/Block/Paragraph/Paragraph";
 import { Todo } from "../../components/Block/Todo/Todo";
 import { Heading_1 } from "../../components/Block/Heading_1/Heading_1";
@@ -21,30 +23,74 @@ export default function BlogIndex(props: any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="bg-gray-900 container mx-auto px-4 pt-28 font-thin text-white">
-        {props.post.results.map((block:any, index: number) => (
+      <div className="container mx-auto bg-gray-900 px-4 pt-28 font-thin text-white">
+        {props.post.results.map((block: any, index: number) => (
           <span key={block.id}>
-            {block.type == "paragraph" && <Paragraph text={block.paragraph.rich_text[0]?.plain_text} />}
+            {block.type == "paragraph" &&
+              block.paragraph.rich_text.map((item: any) => (
+                <Paragraph text={item.plain_text} />
+              ))}
 
-            {block.type == "to_do" && <Todo inputId={block.id} text={block.to_do.rich_text[0]?.plain_text} checked={block.to_do.checked} />}
+            {block.type == "to_do" &&
+              block.to_do.rich_text.map((item: any) => (
+                <Todo
+                  inputId={block.id}
+                  text={item.plain_text}
+                  checked={block.to_do.checked}
+                />
+              ))}
 
-            {block.type == "heading_1" && <Heading_1 text={block.heading_1.rich_text[0]?.plain_text} />}
+            {block.type == "heading_1" &&
+              block.heading_1.rich_text.map((item: any) => (
+                <Heading_1 text={item.plain_text} />
+              ))}
 
-            {block.type == "heading_2" && <Heading_2 text={block.heading_2.rich_text[0]?.plain_text} />}
+            {block.type == "heading_2" &&
+              block.heading_2.rich_text.map((item: any) => (
+                <Heading_2 text={item.plain_text} />
+              ))}
 
-            {block.type == "heading_3" && <Heading_3 text={block.heading_3.rich_text[0]?.plain_text} />}
+            {block.type == "heading_3" &&
+              block.heading_3.rich_text.map((item: any) => (
+                <Heading_3 text={item.plain_text} />
+              ))}
 
-            {block.type == "bulleted_list_item" && <ListItem text={block.bulleted_list_item.rich_text[0]?.plain_text} type="bulleted_list_item" />}
-            {block.type == "numbered_list_item" && <ListItem text={block.numbered_list_item.rich_text[0]?.plain_text} type="numbered_list_item" />}
-            
-            {block.type == "quote" && <Blockquote text={block.quote.rich_text[0]?.plain_text} />}
+            {block.type == "bulleted_list_item" &&
+              block.bulleted_list_item.rich_text.map((item: any) => (
+                <ListItem text={item.plain_text} type="bulleted_list_item" />
+              ))}
+            {block.type == "numbered_list_item" &&
+              block.numbered_list_item.rich_text.map((item: any) => (
+                <ListItem text={item.plain_text} type="numbered_list_item" />
+              ))}
 
-            {block.type == "divider" && <hr className="my-3"/>}
+            {block.type == "quote" &&
+              block.quote.rich_text.map((item: any) => (
+                <Blockquote text={item.plain_text} />
+              ))}
 
-            {block.type == "image" && <img className="w-screen max-w-320 md:max-w-md lg:max-w-lg" src={block.image.file.url} alt={block.image.caption[0]?.plain_text ?? ""} />}
+            {block.type == "divider" && <hr className="my-3" />}
 
-            {block.type == "code" && <p>code</p>}
+            {block.type == "image" && (
+              <img
+                className="max-w-320 w-screen md:max-w-md lg:max-w-lg"
+                src={block.image.file.url}
+                alt={block.image.caption[0]?.plain_text ?? ""}
+              />
+            )}
 
+            {block.type == "code" && (
+              <SyntaxHighlighter
+                className="mt-6"
+                language={block.code.language}
+                style={monokaiSublime}
+              >
+                {block.code.rich_text[0]?.plain_text}
+              </SyntaxHighlighter>
+            )}
+            <small className="mb-6 font-bold text-gray-500">
+              {block.code?.caption[0]?.plain_text}
+            </small>
           </span>
         ))}
       </div>
