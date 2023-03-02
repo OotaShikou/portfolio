@@ -28,12 +28,13 @@ export default function BlogIndex(props: any) {
           <span key={block.id}>
             {block.type == "paragraph" &&
               block.paragraph.rich_text.map((item: any) => (
-                <Paragraph text={item.plain_text} />
+                <Paragraph key={block.id} text={item.plain_text} />
               ))}
 
             {block.type == "to_do" &&
               block.to_do.rich_text.map((item: any) => (
                 <Todo
+                  key={block.id}
                   inputId={block.id}
                   text={item.plain_text}
                   checked={block.to_do.checked}
@@ -42,31 +43,39 @@ export default function BlogIndex(props: any) {
 
             {block.type == "heading_1" &&
               block.heading_1.rich_text.map((item: any) => (
-                <Heading_1 text={item.plain_text} />
+                <Heading_1 key={block.id} text={item.plain_text} />
               ))}
 
             {block.type == "heading_2" &&
               block.heading_2.rich_text.map((item: any) => (
-                <Heading_2 text={item.plain_text} />
+                <Heading_2 key={block.id} text={item.plain_text} />
               ))}
 
             {block.type == "heading_3" &&
               block.heading_3.rich_text.map((item: any) => (
-                <Heading_3 text={item.plain_text} />
+                <Heading_3 key={block.id} text={item.plain_text} />
               ))}
 
             {block.type == "bulleted_list_item" &&
               block.bulleted_list_item.rich_text.map((item: any) => (
-                <ListItem text={item.plain_text} type="bulleted_list_item" />
+                <ListItem
+                  key={block.id}
+                  text={item.plain_text}
+                  type="bulleted_list_item"
+                />
               ))}
             {block.type == "numbered_list_item" &&
               block.numbered_list_item.rich_text.map((item: any) => (
-                <ListItem text={item.plain_text} type="numbered_list_item" />
+                <ListItem
+                  key={block.id}
+                  text={item.plain_text}
+                  type="numbered_list_item"
+                />
               ))}
 
             {block.type == "quote" &&
               block.quote.rich_text.map((item: any) => (
-                <Blockquote text={item.plain_text} />
+                <Blockquote key={block.id} text={item.plain_text} />
               ))}
 
             {block.type == "divider" && <hr className="my-3" />}
