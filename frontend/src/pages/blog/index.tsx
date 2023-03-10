@@ -66,7 +66,9 @@ export default function BlogIndex(props: any) {
 }
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const res = await fetch(
-    `${process.env.API_URL}/notion_blogs?contains=${context.query?.title ?? ""}`
+    `${process.env.API_URL}/notion_blogs?contains_title=${
+      context.query?.title ?? ""
+    }`
   );
   const data = await res.json();
 

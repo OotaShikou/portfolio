@@ -14,8 +14,9 @@ type Data = {
 
 interface ExtendNextApiRequest extends NextApiRequest {
   query: {
-    contains: string;
+    contains_title: string;
     page_size: string | undefined;
+    contains_tag: string | undefined;
   };
 }
 
@@ -42,7 +43,13 @@ export default async function handler(
         {
           property: "title",
           title: {
-            contains: eq.query.contains ?? "",
+            contains: eq.query.contains_title ?? "",
+          },
+        },
+        {
+          property: "tag",
+          multi_select: {
+            contains: eq.query.contains_tag ?? "",
           },
         },
       ],
